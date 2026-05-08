@@ -1,7 +1,7 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs"; 
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage("so-cart") || []; // if there is no cart in local storage, it will return an empty array, so we can still render the cart page without errors.
   const htmlItems = cartItems.map((item, i) => cartItemTemplate(item, i)); // now the cartItemTemplate receives the item and the index of the item in the array, so we can use it to remove the item from the cart when the button is clicked.
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
@@ -20,7 +20,7 @@ function cartItemTemplate(item, i) {
 }
 
 function removeItemFromCart(index) {  // receive the parameter 'index' from the data-index attribute of the button
-  const cart = getLocalStorage("so-cart");
+  const cart = getLocalStorage("so-cart") || []; // get the cart from local storage, if there is no cart, it will return an empty array
   const updatedCart = cart.filter((_, i) => i !== parseInt(index));  // It only keeps in the array the Index NOT clicked. 
   setLocalStorage("so-cart", updatedCart);
   renderCartContents();
