@@ -19,10 +19,9 @@ function cartItemTemplate(item, i) {
 </li>`;
 }
 
-function removeItemFromCart(index) {
-  // receive the parameter 'index' from the data-index attribute of the button
-  const cart = getLocalStorage("so-cart") || []; // get the cart from local storage, if there is no cart, it will return an empty array
-  const updatedCart = cart.filter((_, i) => i !== parseInt(index)); // It only keeps in the array the Index NOT clicked.
+function removeItemFromCart(index) {  // receive the parameter 'index' from the data-index attribute of the button
+  const cart = getLocalStorage("so-cart");
+  const updatedCart = cart.filter((_, i) => i !== parseInt(index));  // It only keeps in the array the Index NOT clicked. 
   setLocalStorage("so-cart", updatedCart);
   renderCartContents();
 }
