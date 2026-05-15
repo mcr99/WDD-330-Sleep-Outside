@@ -8,5 +8,3 @@ const element = document.querySelector(".product-list");
 const list = new ProductList("tents", dataSource, element);
 
 list.init();
-
-console.log("Instancia de ProductList:", list);
