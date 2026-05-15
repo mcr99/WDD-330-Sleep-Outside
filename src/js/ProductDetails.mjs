@@ -17,11 +17,12 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addProductToCart.bind(this));
   }
-  addProductToCart(product) {
+  addProductToCart() {
     const data = getLocalStorage("so-cart") || [];
-    data.push(product);
+    data.push(this.product);
     setLocalStorage("so-cart", data);
   }
+
   renderProductDetails() {
     productDetailsTemplate(this.product);
   }

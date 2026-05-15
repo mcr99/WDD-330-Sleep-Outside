@@ -7,6 +7,11 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item, i) {
+  if (!item.Id) {
+    return ""
+  }
+
+  const colorName = item.Colors?.ColorName || "Standard"
   return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img src="${item.Image}" alt="${item.Name}" />
