@@ -213,6 +213,7 @@ button {
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
+  width: 100%;
 }
 
 .cart-card__image {
@@ -237,11 +238,26 @@ button {
 .cart-card__quantity {
   grid-row: 1;
   grid-column: 3;
+  text-align: center;
 }
 
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+  text-align: center;
+}
+
+/*Cart Footer*/
+.cart-footer{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 20px 0;
+  font-size: large;
+  font-weight: bold;
+}
+
+.cart-footer-hide {
+  display: none;
 }
 
    /* W03: Product Categories Styles (Home Page) */
@@ -305,6 +321,11 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  /*Cart Footer*/
+  .cart-footer {
+    font-size: x-large;
   }
 }
 
