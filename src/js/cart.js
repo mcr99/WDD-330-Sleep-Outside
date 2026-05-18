@@ -47,7 +47,7 @@ function cartTotal(items) {
     items.forEach(item => {
       total += item.FinalPrice
     });
-    totalAmount.textContent = `$${total}` 
+    totalAmount.textContent = `$${total.toFixed(2)}` 
   } else {
     hideTotal.classList.add("cart-footer-hide")
   }
