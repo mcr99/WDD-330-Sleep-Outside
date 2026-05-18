@@ -14,11 +14,11 @@ function discountBadgeTemplate(product) {
 export function productCardTemplate(product) {
   const discountHTML = discountBadgeTemplate(product);
   const isDiscounted = product.FinalPrice < product.SuggestedRetailPrice;
-
+ 
   return `
     <li class="product-card">
-      <a href="product_pages/?product=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}" />
+      <a href="../product_pages/index.html?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" />
         <h3 class="card__brand">${product.Brand.Name}</h3>
         <h2 class="card__name">${product.Name}</h2>
         
@@ -46,7 +46,7 @@ export default class ProductList {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
   }
 }

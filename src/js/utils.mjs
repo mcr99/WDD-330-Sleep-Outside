@@ -36,3 +36,7 @@ export function getParam(param) {
   const product = urlParams.get(param);
   return product;
 }
+
+export function showCategory(category) {
+  qs("#category").textContent = category[0].toUpperCase() + category.slice(1);
+}
