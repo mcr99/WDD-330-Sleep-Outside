@@ -6,7 +6,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
-function cartItemTemplate(item, i) {
+function cartItemTemplate(item, i) { 
   return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img src="${item.Image}" alt="${item.Name}" />
@@ -19,9 +19,10 @@ function cartItemTemplate(item, i) {
 </li>`;
 }
 
-function removeItemFromCart(index) {  // receive the parameter 'index' from the data-index attribute of the button
+function removeItemFromCart(index) {
+  // receive the parameter 'index' from the data-index attribute of the button
   const cart = getLocalStorage("so-cart");
-  const updatedCart = cart.filter((_, i) => i !== parseInt(index));  // It only keeps in the array the Index NOT clicked. 
+  const updatedCart = cart.filter((_, i) => i !== parseInt(index)); // It only keeps in the array the Index NOT clicked.
   setLocalStorage("so-cart", updatedCart);
   renderCartContents();
 }
