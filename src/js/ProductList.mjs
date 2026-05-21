@@ -1,6 +1,6 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
-function discountBadgeTemplate(product) {
+export function discountBadgeTemplate(product) {
   const isDiscounted = product.FinalPrice < product.SuggestedRetailPrice;
   if (isDiscounted) {
     const savings = (product.SuggestedRetailPrice - product.FinalPrice).toFixed(
