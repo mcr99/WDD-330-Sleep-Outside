@@ -7,6 +7,7 @@ export default class ProductDetails {
     this.dataSource = dataSource;
   }
   async init() {
+    console.log("this", this);
     // use the datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
     // the product details are needed before rendering the HTML
@@ -29,12 +30,13 @@ export default class ProductDetails {
 }
 
 function productDetailsTemplate(product) {
+  console.log("product in productDetailsTemplate", product);
   document.querySelector("h2").textContent = product.Brand.Name;
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
   const productImage = document.getElementById("productImage");
   if (productImage) {
-    productImage.src = product.Image;
+    productImage.src = product.Images.PrimaryLarge;
     productImage.alt = product.NameWithoutBrand;
   }
   
