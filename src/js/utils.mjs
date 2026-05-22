@@ -50,6 +50,18 @@ export async function loadHeaderFooter () {
   qs("#main-footer").innerHTML = footer;
   renderWithTemplate(header, qs("#main-header"), {});
   renderWithTemplate(footer, qs("#main-footer"), {});
+  itemsInCart()
+}
+
+export function itemsInCart() {
+  const cartNumber = document.querySelector(".cart_Number")
+  const box = document.querySelector(".cart_Number_Box")
+  cartNumber.textContent = (getLocalStorage("so-cart") || []).length
+  if (cartNumber.textContent < 1) {
+    box.classList.add("cart_Number_box_hide")
+  } else {
+    box.classList.remove("cart_Number_box_hide")
+  }
 }
 
 export function getParam(param) {
