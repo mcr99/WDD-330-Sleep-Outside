@@ -13,7 +13,7 @@ function renderCartContents() {
 function cartItemTemplate(item, i) { 
   return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
-    <img src="${item.Image}" alt="${item.Name}" />
+    <img src="${item.Images.PrimarySmall}" alt="${item.Name}" />
   </a>
   <a href="#"><h2 class="card__name">${item.Name}</h2></a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
