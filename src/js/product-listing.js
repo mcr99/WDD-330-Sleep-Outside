@@ -1,6 +1,8 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import { getParam, showCategory } from "./utils.mjs";
+import { getParam, showCategory, loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter()
 
 const category = getParam("category");
 showCategory(category); 

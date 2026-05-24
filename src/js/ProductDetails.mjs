@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, itemsInCart } from "./utils.mjs";
 import { discountBadgeTemplate } from "./ProductList.mjs";
 
 export default class ProductDetails {
@@ -18,6 +18,7 @@ export default class ProductDetails {
     const data = getLocalStorage("so-cart") || [];
     data.push(this.product);
     setLocalStorage("so-cart", data);
+    itemsInCart()
   }
   
   renderProductDetails() {

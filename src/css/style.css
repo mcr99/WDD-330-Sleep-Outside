@@ -121,6 +121,27 @@ button {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  position: relative;
+  margin-right: 20px;
+}
+
+.cart_Number_Box{
+  background: var(--tertiary-color);
+  position: absolute;
+  border-radius: 100%;
+  padding: 0px 2px;
+  top: 0px;
+  left: 10px;
+}
+
+.cart_Number_box_hide{
+  display: none;
+}
+
+.cart_Number{
+  color: white;
+  font-size:x-small;
+  font-weight: bold;
 }
 
 .cart svg {

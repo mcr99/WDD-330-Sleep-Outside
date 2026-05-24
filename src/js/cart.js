@@ -1,5 +1,5 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, itemsInCart } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -29,6 +29,7 @@ function removeItemFromCart(index) {
   const updatedCart = cart.filter((_, i) => i !== parseInt(index)); // It only keeps in the array the Index NOT clicked.
   setLocalStorage("so-cart", updatedCart);
   renderCartContents();
+  itemsInCart();
 }
 
 renderCartContents();
