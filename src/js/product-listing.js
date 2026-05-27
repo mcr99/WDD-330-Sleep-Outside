@@ -4,7 +4,7 @@ import { getParam, showCategory } from "./utils.mjs";
 
 const category = getParam("category");
 showCategory(category); 
-const dataSource = new ProductData(category);
+const dataSource = new ProductData();
 
 const element = document.querySelector(".product-list");
 
