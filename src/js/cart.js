@@ -1,5 +1,9 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+<<<<<<< HEAD
 import { loadHeaderFooter } from './utils.mjs';
+=======
+import { loadHeaderFooter, itemsInCart } from "./utils.mjs";
+>>>>>>> f66e3447ae8d42a5f640198bd0eb949c597489f3
 
 loadHeaderFooter();
 
@@ -13,11 +17,11 @@ function renderCartContents() {
 function cartItemTemplate(item, i) { 
   return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
-    <img src="${item.Image}" alt="${item.Name}" />
+    <img src="${item.Images.PrimarySmall}" alt="${item.Name}" />
   </a>
   <a href="#"><h2 class="card__name">${item.Name}</h2></a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty: ${item.Quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <button data-index="${i}" class="remove-btn">X</button>
 </li>`;
@@ -29,6 +33,7 @@ function removeItemFromCart(index) {
   const updatedCart = cart.filter((_, i) => i !== parseInt(index)); // It only keeps in the array the Index NOT clicked.
   setLocalStorage("so-cart", updatedCart);
   renderCartContents();
+  itemsInCart();
 }
 
 renderCartContents();
@@ -50,7 +55,7 @@ function cartTotal(items) {
     items.forEach(item => {
       total += item.FinalPrice
     });
-    totalAmount.textContent = `$${total}` 
+    totalAmount.textContent = `$${total.toFixed(2)}` 
   } else {
     hideTotal.classList.add("cart-footer-hide")
   }
