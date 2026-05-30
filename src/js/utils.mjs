@@ -75,3 +75,24 @@ export function getParam(param) {
 export function showCategory(category) {
   qs("#category").textContent = category[0].toUpperCase() + category.slice(1);
 }
+
+export function alertMessage(message, scroll = true) {
+  const alertElement = document.createElement("div");
+  alertElement.innerHTML = `<p>${message}</p><span>X</span>`;
+  alertElement.classList.add("alert");
+  const main = document.querySelector("main");
+  main.prepend(alertElement);
+  alertElement.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
