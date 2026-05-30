@@ -15,9 +15,15 @@ export default class ProductDetails {
     }
   }
   addProductToCart() {
-    const data = getLocalStorage("so-cart") || [];
-    data.push(this.product);
-    setLocalStorage("so-cart", data);
+    const cartItems = getLocalStorage("so-cart") || [];
+    const existingItem = cartItems.find((item) => item.Id == this.product.Id);
+    if (existingItem) {
+      existingItem.Quantity++;
+    } else {
+      this.product.Quantity = 1;
+      cartItems.push(this.product);
+    }
+    setLocalStorage("so-cart", cartItems);
     itemsInCart()
   }
   

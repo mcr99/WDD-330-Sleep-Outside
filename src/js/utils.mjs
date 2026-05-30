@@ -56,7 +56,8 @@ export async function loadHeaderFooter () {
 export function itemsInCart() {
   const cartNumber = document.querySelector(".cart_Number")
   const box = document.querySelector(".cart_Number_Box")
-  const amount = (getLocalStorage("so-cart") || []).length
+  const cartItems = (getLocalStorage("so-cart") || []);
+  const amount = cartItems.reduce((total, item) => total + item.Quantity, 0);
   cartNumber.textContent = amount
   if (amount < 1) {
     box.classList.add("cart_Number_box_hide")
