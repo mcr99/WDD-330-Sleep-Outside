@@ -517,6 +517,14 @@ button {
   }
 }
 
+.sort-container {
+  margin: 1rem 0;
+}
+
+.sort-container select {
+  padding: 0.5rem;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
