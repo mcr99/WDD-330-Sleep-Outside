@@ -15,11 +15,20 @@ function cartItemTemplate(item, i) {
   <a href="#" class="cart-card__image">
     <img src="${item.Images.PrimarySmall}" alt="${item.Name}" />
   </a>
-  <a href="#"><h2 class="card__name">${item.Name}</h2></a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${item.Quantity}</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <div>
+    <a href="#"><h2 class="card__name">${item.Name}</h2></a>
+    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  </div>
   <button data-index="${i}" class="remove-btn">X</button>
+  <div class="cart-card__quantity"> 
+    <span>Quantity:</span>
+    <div class="quantity_box">
+      <button class="decrease_cart" data-index="${i}">-</button>
+      <span class="quantity_cart">${item.Quantity}</span>
+      <button class="increase_cart" data-index="${i}">+</button>
+    </div>
+    <p class="cart-card__price">$${(item.FinalPrice * item.Quantity).toFixed(2) }</p>
+  </div>
 </li>`;
 }
 
@@ -32,12 +41,43 @@ function removeItemFromCart(index) {
   itemsInCart();
 }
 
+function decreaseQuantity(index) {
+  const cart = getLocalStorage("so-cart")
+
+  if (cart[index].Quantity > 1) {
+    cart[index].Quantity--
+    setLocalStorage("so-cart", cart)
+    renderCartContents()
+    itemsInCart()
+  } else {
+    removeItemFromCart(index)
+  }
+}
+
+function increaseQuantity(index) {
+  const cart = getLocalStorage("so-cart")
+
+  cart[index].Quantity++
+
+  setLocalStorage("so-cart", cart)
+  renderCartContents()
+  itemsInCart()
+}
+
 renderCartContents();
 //this piece of code adds an event listener to the product list, and when a click event occurs, it checks if the clicked element
 //  has the class 'remove-btn'. If it does, it calls the removeItemFromCart function with the index of the item to be removed, which is stored in the data-index attribute of the button.
 document.querySelector(".product-list").addEventListener("click", (event) => {
+  const index = event.target.dataset.index
+
   if (event.target.classList.contains("remove-btn")) {
     removeItemFromCart(event.target.dataset.index);
+  }
+  if (event.target.classList.contains("decrease_cart")) {
+    decreaseQuantity(event.target.dataset.index);
+  }
+  if (event.target.classList.contains("increase_cart")) {
+    increaseQuantity(event.target.dataset.index);
   }
 });
 
@@ -49,7 +89,7 @@ function cartTotal(items) {
     hideTotal.classList.remove("cart-footer-hide")
     let total = 0
     items.forEach(item => {
-      total += item.FinalPrice
+      total += item.FinalPrice * item.Quantity
     });
     totalAmount.textContent = `$${total.toFixed(2)}` 
   } else {
