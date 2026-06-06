@@ -97,7 +97,7 @@ export class CheckoutProcess {
       const response = await services.checkout(order);
       console.log(response);
       setLocalStorage(this.key, []);
-      window.location.href = "/checkout/success.html";
+      window.location.href = "src/checkout/success.html";
     } catch (err) {
       console.log(err);
       removeAllAlerts();
